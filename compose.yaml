@@ -1,0 +1,7 @@
+services:
+    db:
+        container_name: aelledge-docker-sql
+        restart: always
+        build: .
+        ports:
+            ["5432:5432"]
