@@ -25,20 +25,17 @@ jobs:
         POSTGRES_PASSWORD: password
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Install wait-on from NPM (Used later.)
-      - name: Install wait-on from NPM
-        run: npm i wait-on -g
-    
+    steps:    
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       
       # Run Docker Compose to make image (runs in background)
       - name: Run Docker Compose
         run: docker compose up --build -d
-
+        
+        # Wait until the server is ready.
       - name: Wait for port to be open.
-        run: wait-on tcp:5432
+        run: pg_isready -d maindb -h localhost -t 10
 
       # Runs a single command using the runners shell
       - name: Init Database with values
