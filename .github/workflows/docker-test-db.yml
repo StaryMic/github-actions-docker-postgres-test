@@ -35,7 +35,7 @@ jobs:
       
       # Run Docker Compose to make image (runs in background)
       - name: Run Docker Compose
-        run: docker compose up --build &
+        run: docker compose up --build -d
 
       - name: Wait for port to be open.
         run: wait-on tcp:5432
