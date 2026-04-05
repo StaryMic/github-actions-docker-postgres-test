@@ -6,7 +6,7 @@ name: Builds/Runs Docker container and tests the DB within it.
 env:
     POSTGRES_DB: maindb
     POSTGRES_USER: postgres-user
-    POSTGRES_PASSWORD: password
+    PGPASSWORD: password
 
 # Controls when the workflow will run
 on:
