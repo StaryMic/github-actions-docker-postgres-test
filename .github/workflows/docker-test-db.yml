@@ -40,6 +40,12 @@ jobs:
       - name: Wait for port to be open.
         run: wait-on tcp:5432
 
+      - name: Check if postgres is truly running.
+        run: pg_isready
+
+      - name: Store docker IP for later.
+        run: docker_container_ip=$(docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' aelledge-docker-sql)
+
       # Runs a single command using the runners shell
       - name: Init Database with values
         run: ./init.sh
