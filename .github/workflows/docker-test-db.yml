@@ -24,7 +24,7 @@ jobs:
     steps:
       # Install wait-on from NPM (Used later.)
       - name: Install wait-on from NPM
-        run: npm i wait-on
+        run: npm i wait-on -g
     
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
         run: docker compose up --build &
 
       - name: Wait for port to be open.
-        run: ./node_modules/.bin/wait-on tcp:5432
+        run: wait-on tcp:5432
 
       # Runs a single command using the runners shell
       - name: Init Database with values
