@@ -1,1 +1,1 @@
-psql -h localhost:5432 -U postgres-user -f ./initdb.sql
+psql -h localhost -U postgres-user -f ./initdb.sql
