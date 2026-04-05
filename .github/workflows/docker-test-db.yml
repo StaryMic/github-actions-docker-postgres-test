@@ -35,11 +35,14 @@ jobs:
       - name: Run Docker Compose
         run: docker compose up --build -d
         
-        # Wait until the server is ready.
+      # Wait until the server is ready.
       - name: Wait for port to be open.
         run: |
             sleep 5
             pg_isready -d maindb -h localhost -t 10 \
+      
+      - name: Grab the IP of the running container to use for the other scripts.
+        run: ./get-docker-ip.sh
 
       # Runs a single command using the runners shell
       - name: Init Database with values
@@ -47,4 +50,4 @@ jobs:
 
       # Check if the users have been added correctly to the database.
       - name: Check DB for Users
-        run: psql -U postgres-user --dbname=maindb -c 'SELECT * FROM users'
+        run: ./check-users-exist.sh
