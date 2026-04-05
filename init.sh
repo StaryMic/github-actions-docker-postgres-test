@@ -1,1 +1,1 @@
-psql -h localhost -U postgres-user -f ./initdb.sql
+psql -h localhost -U postgres-user --dbname=maindb -f ./initdb.sql
