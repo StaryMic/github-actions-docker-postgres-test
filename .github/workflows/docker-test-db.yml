@@ -35,7 +35,9 @@ jobs:
         
         # Wait until the server is ready.
       - name: Wait for port to be open.
-        run: pg_isready -d maindb -h localhost -t 10
+        run: |
+            sleep 3000
+            pg_isready -d maindb -h localhost -t 10 \
 
       # Runs a single command using the runners shell
       - name: Init Database with values
